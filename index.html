@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samiksha Samyal — Product Leader</title>
+<meta name="description" content="Samiksha Samyal — Product Leader with 13+ years of experience driving digital banking, fintech transformation, and lending platforms across GCC, North America, Europe, and India.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e17;
+    --bg-soft:#0f1523;
+    --card:rgba(255,255,255,.04);
+    --card-border:rgba(255,255,255,.08);
+    --text:#e8ecf4;
+    --muted:#94a0b8;
+    --accent:#4f8cff;
+    --accent2:#8b5cf6;
+    --accent-soft:rgba(79,140,255,.12);
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Sora',sans-serif}
+  ::selection{background:var(--accent);color:#fff}
+
+  /* ---------- background glow ---------- */
+  .glow{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(600px 400px at 15% 0%, rgba(79,140,255,.13), transparent 60%),
+      radial-gradient(700px 500px at 90% 20%, rgba(139,92,246,.10), transparent 60%),
+      radial-gradient(500px 400px at 50% 100%, rgba(79,140,255,.07), transparent 60%);
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(10,14,23,.72);
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .nav-inner{
+    max-width:1100px;margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-family:'Sora';font-weight:800;font-size:1.15rem;color:var(--text);text-decoration:none}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:1100px;margin:0 auto;padding:170px 24px 100px;
+    display:flex;flex-direction:column;align-items:flex-start;gap:22px;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent-soft);color:var(--accent);
+    border:1px solid rgba(79,140,255,.25);
+    padding:6px 14px;border-radius:999px;font-size:.82rem;font-weight:600;
+  }
+  .badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 10px #34d399}
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;line-height:1.1;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .tagline{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:640px}
+  .hero .stats{display:flex;gap:40px;margin-top:14px;flex-wrap:wrap}
+  .stat .num{font-family:'Sora';font-size:1.8rem;font-weight:700;color:var(--text)}
+  .stat .num em{font-style:normal;color:var(--accent)}
+  .stat .lbl{font-size:.82rem;color:var(--muted)}
+  .cta-row{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 26px;border-radius:12px;font-weight:600;font-size:.95rem;
+    text-decoration:none;transition:transform .2s,box-shadow .2s;
+  }
+  .btn-primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;
+    box-shadow:0 8px 24px rgba(79,140,255,.35);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(79,140,255,.45)}
+  .btn-ghost{border:1px solid var(--card-border);color:var(--text);background:var(--card)}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent)}
+
+  /* ---------- sections ---------- */
+  section{max-width:1100px;margin:0 auto;padding:80px 24px}
+  .sec-label{color:var(--accent);font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  .sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:700;margin-bottom:36px}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+  .about-text p{color:var(--muted);font-size:1.02rem;margin-bottom:16px}
+  .about-text strong{color:var(--text)}
+  .highlight-cards{display:flex;flex-direction:column;gap:14px}
+  .h-card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:18px 20px;display:flex;gap:14px;align-items:flex-start;
+    transition:border-color .25s,transform .25s;
+  }
+  .h-card:hover{border-color:rgba(79,140,255,.4);transform:translateX(4px)}
+  .h-card .ico{font-size:1.4rem;line-height:1.3}
+  .h-card b{display:block;font-size:.95rem}
+  .h-card span{color:var(--muted);font-size:.85rem}
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .skill-card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:26px;transition:border-color .25s,transform .25s;
+  }
+  .skill-card:hover{border-color:rgba(139,92,246,.4);transform:translateY(-4px)}
+  .skill-card h3{font-size:1.05rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    background:rgba(255,255,255,.05);border:1px solid var(--card-border);
+    padding:6px 13px;border-radius:999px;font-size:.82rem;color:var(--muted);
+    transition:all .2s;
+  }
+  .chip:hover{color:var(--text);border-color:var(--accent);background:var(--accent-soft)}
+  .chip.hot{color:var(--accent);border-color:rgba(79,140,255,.35);background:var(--accent-soft);font-weight:600}
+
+  /* ---------- experience timeline ---------- */
+  .timeline{position:relative;padding-left:32px}
+  .timeline::before{
+    content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,var(--accent),var(--accent2),transparent);
+  }
+  .t-item{position:relative;padding-bottom:48px}
+  .t-item:last-child{padding-bottom:0}
+  .t-item::before{
+    content:"";position:absolute;left:-31px;top:8px;width:16px;height:16px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--accent);
+  }
+  .t-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+  .t-head h3{font-size:1.2rem}
+  .t-date{
+    font-size:.78rem;font-weight:600;color:var(--accent);
+    background:var(--accent-soft);border:1px solid rgba(79,140,255,.25);
+    padding:3px 12px;border-radius:999px;white-space:nowrap;
+  }
+  .t-role{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+  .t-role b{color:var(--text)}
+  .t-card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  .t-card ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .t-card li{color:var(--muted);font-size:.93rem;padding-left:22px;position:relative}
+  .t-card li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+  .t-card li b{color:var(--text)}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .proj-tag{
+    font-size:.78rem;padding:5px 12px;border-radius:8px;
+    background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#b7a4f5;
+  }
+
+  /* ---------- projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .p-card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:26px;display:flex;flex-direction:column;gap:12px;
+    transition:border-color .25s,transform .25s;position:relative;overflow:hidden;
+  }
+  .p-card::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    opacity:0;transition:opacity .25s;
+  }
+  .p-card:hover{transform:translateY(-5px);border-color:rgba(79,140,255,.4)}
+  .p-card:hover::after{opacity:1}
+  .p-card .p-ico{font-size:1.9rem}
+  .p-card h3{font-size:1.08rem}
+  .p-card p{color:var(--muted);font-size:.88rem;flex:1}
+  .p-card .p-meta{font-size:.78rem;color:var(--accent);font-weight:600}
+
+  /* ---------- achievements ---------- */
+  .ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .a-card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+    padding:20px;display:flex;gap:14px;align-items:center;
+    transition:border-color .25s;
+  }
+  .a-card:hover{border-color:rgba(79,140,255,.4)}
+  .a-card .a-ico{
+    width:44px;height:44px;flex-shrink:0;border-radius:12px;
+    background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  }
+  .a-card span{font-size:.9rem;color:var(--muted)}
+  .a-card span b{color:var(--text)}
+
+  /* ---------- education ---------- */
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+
+  /* ---------- contact ---------- */
+  .contact-wrap{
+    text-align:center;background:var(--card);border:1px solid var(--card-border);
+    border-radius:24px;padding:64px 32px;position:relative;overflow:hidden;
+  }
+  .contact-wrap::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(400px 200px at 50% 0%,rgba(79,140,255,.12),transparent 70%);
+    pointer-events:none;
+  }
+  .contact-wrap h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px}
+  .contact-wrap p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* ---------- footer ---------- */
+  footer{
+    text-align:center;padding:36px 24px;color:var(--muted);font-size:.85rem;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    .about-grid{grid-template-columns:1fr}
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;background:rgba(10,14,23,.97);
+      border-bottom:1px solid var(--card-border);padding:8px 0;
+    }
+    .nav-links.open{display:flex}
+    .nav-links li{padding:12px 24px}
+    .menu-btn{display:block}
+    .hero{padding-top:140px}
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">Samiksha<span>.</span>Samyal</a>
+    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Expertise</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Key Initiatives</a></li>
+      <li><a href="#achievements">Impact</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <span class="badge">Open to Product Leadership Roles</span>
+  <h1>Hi, I'm Samiksha Samyal.<br>I scale <span class="grad">digital banking &amp; fintech</span> transformation.</h1>
+  <p class="tagline">Seasoned Product Leader with 13+ years driving digital banking, customer onboarding, digital lending (LOS), and GCC payments across financial institutions in the GCC, North America, Europe, and India.</p>
+  <div class="stats">
+    <div class="stat"><div class="num"><em>13+</em></div><div class="lbl">Years Experience</div></div>
+    <div class="stat"><div class="num"><em>80%</em></div><div class="lbl">GTM Time Reduction</div></div>
+    <div class="stat"><div class="num"><em>70%</em></div><div class="lbl">Cost Reduction</div></div>
+    <div class="stat"><div class="num"><em>1000+</em></div><div class="lbl">Users Trained &amp; Impacted</div></div>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#contact">Get in Touch</a>
+    <a class="btn btn-ghost" href="#experience">View Experience</a>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div class="sec-label">About Me</div>
+  <h2 class="sec-title">Driving enterprise fintech &amp; product excellence</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>Product Leader</strong> with over 13 years of progressive experience shaping digital banking and fintech ecosystems across major global markets. My core expertise spans digital banking platforms, identity journeys, seamless onboarding, and GCC-specific payments.</p>
+      <p>Throughout my career at industry leaders like <strong>Backbase</strong>, <strong>Nagarro</strong>, and <strong>BusinessNEXT</strong>, I’ve specialized in architecting low-code/no-code capabilities, unified banking APIs, and agentic AI use cases that dramatically accelerate go-to-market times and shrink operational overhead.</p>
+      <p>Currently based in <strong>Abu Dhabi, U.A.E.</strong>, driving multi-vendor agile execution and strategic roadmaps for top-tier regional financial institutions.</p>
+    </div>
+    <div class="highlight-cards">
+      <div class="h-card"><div class="ico">🎯</div><div><b>Product Strategy &amp; Roadmap</b><span>MVP definition, backlog prioritization, lean canvas &amp; SAFe scaling</span></div></div>
+      <div class="h-card"><div class="ico">⚡</div><div><b>Low-Code / No-Code Platforms</b><span>Engineered rule engines &amp; modular frameworks cutting GTM by 80%</span></div></div>
+      <div class="h-card"><div class="ico">💳</div><div><b>Digital Banking &amp; Lending</b><span>Core APIs, LOS origination, eKYC, and GCC cross-border payments</span></div></div>
+      <div class="h-card"><div class="ico">🤖</div><div><b>AI Prototyping &amp; UX</b><span>Agentic AI, intelligent document processing &amp; customer journey mapping</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  <div class="sec-label">Expertise</div>
+  <h2 class="sec-title">Core competencies &amp; toolkit</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>🚀 Product Strategy &amp; Delivery</h3>
+      <div class="chips">
+        <span class="chip hot">Product Roadmap</span><span class="chip hot">MVP Definition</span>
+        <span class="chip hot">Backlog Prioritisation</span><span class="chip">Business Analysis</span>
+        <span class="chip">Solution Design</span><span class="chip">Market Research</span>
+        <span class="chip">Lean Canvas</span><span class="chip">SAFe (PO/PM)</span><span class="chip">Agile Practice</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>⚙️ Platform &amp; Technical</h3>
+      <div class="chips">
+        <span class="chip hot">Agentic AI</span><span class="chip hot">Low-Code / No-Code</span>
+        <span class="chip hot">API Ecosystem</span><span class="chip">Data Architecture</span>
+        <span class="chip">Business Process Modeling</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🎨 UX &amp; Collaboration</h3>
+      <div class="chips">
+        <span class="chip hot">AI Prototyping</span><span class="chip hot">Design Thinking</span>
+        <span class="chip hot">Customer Journey Mapping</span><span class="chip">User Personas</span>
+        <span class="chip">Stakeholder Management</span><span class="chip">JIRA</span>
+        <span class="chip">Confluence</span><span class="chip">Figma</span><span class="chip">Miro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="reveal">
+  <div class="sec-label">Experience</div>
+  <h2 class="sec-title">Track record of leadership</h2>
+  <div class="timeline">
+
+    <div class="t-item">
+      <div class="t-head"><h3>Backbase</h3><span class="t-date">Jan 2024 – Present</span></div>
+      <div class="t-role"><b>Senior Business Analyst</b> · Client: Banque Saudi Fransi (U.A.E. remote)</div>
+      <div class="t-card">
+        <ul>
+          <li>Functioning as Lead BA for a team of 3 analysts across two vendor teams, translating complex business needs into high-value product features.</li>
+          <li>Driving delivery of strategic features including digital campaign management, account opening, Middle-East specific payments &amp; money transfers, advanced Identity &amp; login journey enhancements, and loyalty platforms.</li>
+          <li>Managed full Scrum cycle: led release planning, sprint planning, roadmap planning, backlog refinement, and daily scrums for successful Go-Lives.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Digital Banking</span><span class="proj-tag">GCC Payments</span><span class="proj-tag">Identity &amp; Login</span></div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-head"><h3>Backbase</h3><span class="t-date">Aug 2022 – Dec 2023</span></div>
+      <div class="t-role"><b>Senior Product Manager</b> (India remote)</div>
+      <div class="t-card">
+        <ul>
+          <li>Launched the MVP for digital campaign performance tracking for the bank's marketing team.</li>
+          <li>Spearheaded design and initial rollout of Core Banking Unified APIs and data models, establishing Backbase's strategic <b>'Connectivity-as-a-Service'</b> offering.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Connectivity-as-a-Service</span><span class="proj-tag">Unified APIs</span><span class="proj-tag">Campaign Analytics</span></div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-head"><h3>Nagarro</h3><span class="t-date">Mar 2022 – Jul 2022</span></div>
+      <div class="t-role"><b>Product Owner</b> · Client: First Abu Dhabi Bank (U.A.E. remote)</div>
+      <div class="t-card">
+        <ul>
+          <li>Authored the winning solution proposal that secured the client deal, and successfully delivered a centralized loan processing platform.</li>
+          <li>Achieved major operational transformation, <b>reducing operational costs by 70%</b> and <b>customer footfall by 80%</b>.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Loan Processing</span><span class="proj-tag">FAB</span><span class="proj-tag">Cost Optimization</span></div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-head"><h3>Nagarro</h3><span class="t-date">May 2019 – Mar 2022</span></div>
+      <div class="t-role"><b>Product Manager</b> · Client: Amount Small Business (India remote)</div>
+      <div class="t-card">
+        <ul>
+          <li>Owned and launched a low-code Business Rule Engine feature which <b>reduced partner go-to-market time by 80%</b> for the SaaS SMB lending platform.</li>
+          <li>Conceived Intelligent Document Processing features, driving an <b>80% reduction in processing costs/time</b> and a <b>60% reduction in user documentation</b>.</li>
+          <li>Received the prestigious <b>Nagarro Excellence Award</b> for outstanding performance on the client project.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">SaaS Lending</span><span class="proj-tag">Low-Code Engine</span><span class="proj-tag">Intelligent Document Processing</span></div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-head"><h3>BusinessNEXT</h3><span class="t-date">Oct 2015 – May 2019</span></div>
+      <div class="t-role"><b>Product Owner</b> (India)</div>
+      <div class="t-card">
+        <ul>
+          <li>Conceived, owned, and launched the company's first out-of-the-box digital loan origination system (LOS) for major tier-1 banking clients (HDFC Bank, Fullerton India).</li>
+          <li>Designed and managed key platform enhancements, including low-code modules, API ecosystem, eKYC, and Risk Rating Platform for multiple clients across MENA and India.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Loan Origination (LOS)</span><span class="proj-tag">eKYC</span><span class="proj-tag">Risk Rating</span></div>
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-head"><h3>SAR Group</h3><span class="t-date">Nov 2012 – Oct 2015</span></div>
+      <div class="t-role"><b>IT Business Analyst</b> (India)</div>
+      <div class="t-card">
+        <ul>
+          <li>Implemented a B2B sales force automation app across 5 business units and executed comprehensive enablement and training for <b>1000+ users</b>.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Sales Force Automation</span><span class="proj-tag">B2B Enablement</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+  <div class="sec-label">Key Initiatives</div>
+  <h2 class="sec-title">Strategic products &amp; platforms delivered</h2>
+  <div class="proj-grid">
+    <div class="p-card">
+      <div class="p-ico">🌐</div>
+      <h3>Connectivity-as-a-Service Platform</h3>
+      <p>Spearheaded design and first cut of Core Banking Unified APIs and data models at Backbase, creating a reusable integration foundation.</p>
+      <div class="p-meta">Backbase · Unified APIs · CaaS</div>
+    </div>
+    <div class="p-card">
+      <div class="p-ico">⚡</div>
+      <h3>Low-Code Business Rule Engine</h3>
+      <p>Owned and launched a low-code rule engine for SMB SaaS lending platforms that slashed partner go-to-market time by 80%.</p>
+      <div class="p-meta">Amount · Low-Code · Fintech</div>
+    </div>
+    <div class="p-card">
+      <div class="p-ico">🏦</div>
+      <h3>Centralized Loan Processing Platform</h3>
+      <p>Delivered an automated loan origination and processing platform for First Abu Dhabi Bank that cut operational costs by 70%.</p>
+      <div class="p-meta">Nagarro / FAB · LOS · Automation</div>
+    </div>
+    <div class="p-card">
+      <div class="p-ico">📄</div>
+      <h3>Intelligent Document Processing</h3>
+      <p>Conceived automated document processing features reducing processing time by 80% and manual paperwork burden by 60%.</p>
+      <div class="p-meta">AI / IDP · Workflow Automation</div>
+    </div>
+    <div class="p-card">
+      <div class="p-ico">💳</div>
+      <h3>Digital Campaign &amp; Loyalty Hub</h3>
+      <p>Drove delivery of strategic banking features including campaign management, account opening, and tailored loyalty platforms for Banque Saudi Fransi.</p>
+      <div class="p-meta">Backbase / BSF · Retail Banking</div>
+    </div>
+    <div class="p-card">
+      <div class="p-ico">📊</div>
+      <h3>Enterprise Loan Origination System (LOS)</h3>
+      <p>Conceived and launched the first out-of-the-box digital LOS adopted by major institutions like HDFC Bank and Fullerton India.</p>
+      <div class="p-meta">BusinessNEXT · Lending · eKYC</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="reveal">
+  <div class="sec-label">Impact &amp; Recognition</div>
+  <h2 class="sec-title">Awards &amp; measurable outcomes</h2>
+  <div class="ach-grid">
+    <div class="a-card"><div class="a-ico">🏆</div><span><b>Nagarro Excellence Award</b> — Outstanding client project delivery</span></div>
+    <div class="a-card"><div class="a-ico">📉</div><span><b>70% Reduction</b> in operational costs for digital lending workflows</span></div>
+    <div class="a-card"><div class="a-ico">🚀</div><span><b>80% Faster GTM</b> via low-code business rule engine launch</span></div>
+    <div class="a-card"><div class="a-ico">🚶</div><span><b>80% Lower Footfall</b> through automated digital processing</span></div>
+    <div class="a-card"><div class="a-ico">👥</div><span><b>1,000+ Users</b> trained and onboarded on enterprise B2B apps</span></div>
+    <div class="a-card"><div class="a-ico">✍️</div><span>Published thought leadership on <b>Open Banking &amp; Digital Lending</b></span></div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section id="education" class="reveal">
+  <div class="sec-label">Background</div>
+  <h2 class="sec-title">Education, certifications &amp; thought leadership</h2>
+  <div class="edu-grid">
+    <div class="skill-card">
+      <h3>🎓 Education</h3>
+      <p style="color:var(--muted);font-size:.92rem">
+        <b style="color:var(--text)">MBA — Software Enterprise Management</b><br>
+        C-DAC · Honors (2010–2012)<br><br>
+        <b style="color:var(--text)">B.Tech — Information Technology</b><br>
+        CSVTU · Honors (2006–2010)
+      </p>
+    </div>
+    <div class="skill-card">
+      <h3>📜 Certifications &amp; Thought Leadership</h3>
+      <ul style="list-style:none;color:var(--muted);font-size:.92rem;display:flex;flex-direction:column;gap:8px">
+        <li>▸ Certified SAFe® 5 Product Owner / Product Manager (ID: 0027x6500-0317)</li>
+        <li>▸ AI Prototyping for Product Managers — Udemy (2026)</li>
+        <li>▸ Technology Product Management Training — Nagarro</li>
+        <li>▸ Author: <i>Customer Experience in Fintechs</i>, <i>Open Banking</i>, &amp; <i>Digital Lending Trends</i></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="contact-wrap">
+    <div class="sec-label">Contact</div>
+    <h2>Let's drive product transformation together</h2>
+    <p>Looking for a seasoned Product Leader to scale your digital banking, fintech, or lending ecosystem? Let's connect.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:samikshasamyal123@gmail.com">✉️ samikshasamyal123@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/samikshasamyal" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="btn btn-ghost" href="tel:+971553633805">📞 +971 55 363 3805</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Samiksha Samyal · Product Leader · Built for GitHub Pages.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // close mobile menu on link click
+  document.querySelectorAll('#navlinks a').forEach(a=>
+    a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open'))
+  );
+</script>
+</body>
+</html>
